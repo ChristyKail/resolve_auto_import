@@ -1,6 +1,9 @@
 import os
 import sys
 
+# version 0.2.1
+# Fixed bug where filter_clips_for_timeline wouldn't return values, preventing timelines from ever being created.
+
 # version 0.2.0
 # Added a filter so that WAV files are not added to timelines and no timeline is created if a folder only contains WAV files.
 
@@ -64,7 +67,13 @@ def import_from_folders(folders):
             continue
 
         name = os.path.basename(root)
-        timeline_from_clips(filter_clips_for_timeline(clips), name)
+
+        timeline = timeline_from_clips(filter_clips_for_timeline(clips), name)
+
+        if not timeline:
+            notify("Resolve Auto Import", f'Imported {name} but timeline not created')
+            return
+
         notify("Resolve Auto Import", f'Imported {name}')
 
 
@@ -77,6 +86,8 @@ def filter_clips_for_timeline(clips):
             continue
 
         clips_for_timeline.append(clip)
+
+    return clips_for_timeline
 
 
 def notify(title, text):

@@ -1,6 +1,9 @@
 import os
 import sys
 
+# version 0.2.0
+# Added a filter so that WAV files are not added to timelines and no timeline is created if a folder only contains WAV files.
+
 # version 0.1.0
 
 valid_extensions = ["mxf", "mov", "arx", "ari", "r3d", 'mp4', 'dpx', 'exr', 'wav']

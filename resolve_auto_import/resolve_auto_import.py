@@ -1,6 +1,9 @@
 import os
 import sys
 
+# version 0.3.0
+# Imported clips are now forced into alphabetical order in the created timeline.
+
 # version 0.2.1
 # Fixed bug where filter_clips_for_timeline wouldn't return values, preventing timelines from ever being created.
 
@@ -86,6 +89,8 @@ def filter_clips_for_timeline(clips):
             continue
 
         clips_for_timeline.append(clip)
+
+    clips_for_timeline.sort(key=lambda item: item.GetName())
 
     return clips_for_timeline
 

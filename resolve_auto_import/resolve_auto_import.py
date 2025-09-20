@@ -1,6 +1,9 @@
 import os
 import sys
 
+# version 0.4.0
+# Added BRAW and DNG to list of extensions to import.
+
 # version 0.3.0
 # Imported clips are now forced into alphabetical order in the created timeline.
 
@@ -12,7 +15,7 @@ import sys
 
 # version 0.1.0
 
-valid_extensions = ["mxf", "mov", "arx", "ari", "r3d", 'mp4', 'dpx', 'exr', 'wav']
+valid_extensions = ["mxf", "mov", "arx", "ari", "r3d", 'mp4', 'dpx', 'exr', 'wav', 'braw', "dng"]
 
 
 def import_folder_as_roll(source_folder: str):

@@ -19,6 +19,7 @@ Library
 └── Services
     ├── Import into Resolve.workflow
     └── resolve_auto_import
+        ├── media_file_extensions.txt
         ├── DaVinciResolveScript.py
         ├── resolve_auto_import.py
         └── resolve_connection.py
@@ -47,5 +48,5 @@ Now add the workflow to your finder QuickActions.
   
 **Notes:**
 * If a folder doesn't have any media files in it, it will be skipped
-* The tool will see MXF, MOV, ARX, ARI, R3D, MP4, DPX, EXR, and WAV files, but you can add more on line 6 of the resolve_auto_import file.
+* The tool will see MXF, MOV, ARX, ARI, R3D, MP4, DPX, EXR, DNG, BRAW, and WAV files, but you can add more to the `media_file_extensions.txt` file.
 * The tool will also skip folders if a bin of the same name already exists in the root of the project

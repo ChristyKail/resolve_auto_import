@@ -1,0 +1,11 @@
+mxf
+mov
+arx
+ari
+r3d
+mp4
+dpx
+exr
+wav
+braw
+dng

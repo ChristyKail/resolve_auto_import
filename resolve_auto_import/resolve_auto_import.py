@@ -1,6 +1,7 @@
 import os
 import sys
 
+
 # version 0.4.0
 # Added BRAW and DNG to list of extensions to import.
 
@@ -15,17 +16,14 @@ import sys
 
 # version 0.1.0
 
-valid_extensions = ["mxf", "mov", "arx", "ari", "r3d", 'mp4', 'dpx', 'exr', 'wav', 'braw', "dng"]
-
-
-def import_folder_as_roll(source_folder: str):
+def import_folder_as_roll(source_folder: str, extensions: list):
     files_to_import = []
 
     new_bin_name = os.path.basename(source_folder)
 
     for walk_root, dirs, files in os.walk(source_folder):
         for file in files:
-            if file.lower().split(".")[-1] in valid_extensions:
+            if file.lower().split(".")[-1] in extensions:
                 files_to_import.append(os.path.join(walk_root, file))
 
     if not files_to_import:
@@ -59,7 +57,7 @@ def timeline_from_clips(clips_list, timeline_name):
     return created_timeline
 
 
-def import_from_folders(folders):
+def import_from_folders(folders, extensions: list):
     folders.sort()
     for root in folders:
 
@@ -67,7 +65,7 @@ def import_from_folders(folders):
             root = root[:-1]
 
         project = resolve.load_project()
-        clips = import_folder_as_roll(root)
+        clips = import_folder_as_roll(root, extensions)
 
         if not clips:
             continue
@@ -106,6 +104,13 @@ def notify(title, text):
 
 if __name__ == '__main__':
 
+    if os.path.isfile("media_file_extensions.txt"):
+        with open("media_file_extensions.txt", 'r') as file_handler:
+            valid_extensions = [x.strip() for x in file_handler.readlines() if x]
+
+    else:
+        valid_extensions = ["mxf", "mov", "arx", "ari", "r3d", 'mp4', 'dpx', 'exr', 'wav', 'braw', "dng"]
+
     from resolve_connection import ResolveConnection
 
     try:
@@ -115,4 +120,4 @@ if __name__ == '__main__':
         sys.exit()
 
     input_folders = sys.argv[1:]
-    import_from_folders(input_folders)
+    import_from_folders(input_folders, extensions=valid_extensions)

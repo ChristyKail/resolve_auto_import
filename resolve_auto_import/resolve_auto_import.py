@@ -1,6 +1,7 @@
 import os
 import sys
 
+
 # version 0.5.0
 # Split valid extensions into a separate txt file.
 

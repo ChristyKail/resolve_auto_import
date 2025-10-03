@@ -1,6 +1,8 @@
 import os
 import sys
 
+# version 0.5.0
+# Split valid extensions into a separate txt file.
 
 # version 0.4.0
 # Added BRAW and DNG to list of extensions to import.

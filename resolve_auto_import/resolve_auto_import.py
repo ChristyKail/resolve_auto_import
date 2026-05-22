@@ -32,7 +32,7 @@ def import_folder_as_roll(source_folder: str, extensions: list):
     if not files_to_import:
         print("No valid files in that folder")
         notify("Resolve Auto Import", f"No valid files in {new_bin_name}")
-        return
+        return []
 
     mp = resolve.load_project().GetMediaPool()
 
@@ -43,7 +43,7 @@ def import_folder_as_roll(source_folder: str, extensions: list):
     if new_bin_name in folder_names:
         print("Already imported this folder")
         notify("Resolve Auto Import", f"Already imported {new_bin_name}")
-        return
+        return []
 
     roll_bin = mp.AddSubFolder(mp.GetCurrentFolder(), new_bin_name)
 
@@ -79,7 +79,7 @@ def import_from_folders(folders, extensions: list):
 
         if not timeline:
             notify("Resolve Auto Import", f'Imported {name} but timeline not created')
-            return
+            continue
 
         notify("Resolve Auto Import", f'Imported {name}')
 
@@ -107,12 +107,11 @@ def notify(title, text):
 
 if __name__ == '__main__':
 
+    valid_extensions = ["mxf", "mov", "arx", "ari", "r3d", 'mp4', 'dpx', 'exr', 'wav', 'braw', "dng"]
+
     if os.path.isfile("media_file_extensions.txt"):
         with open("media_file_extensions.txt", 'r') as file_handler:
             valid_extensions = [x.strip() for x in file_handler.readlines() if x]
-
-    else:
-        valid_extensions = ["mxf", "mov", "arx", "ari", "r3d", 'mp4', 'dpx', 'exr', 'wav', 'braw', "dng"]
 
     from resolve_connection import ResolveConnection
 

@@ -11,7 +11,7 @@ This tool allows you to select any number of camera rolls at the Finder level, a
 * Tested on MacOS Ventura with Python 3.13.0, and Resolve Studio 19.0.3.
 
 ## Installation
-Download or git clone the repo, and run the `install.command` file. This will copy the files into your `~/Library/Services` directory. 
+Download or git clone the repo, and run the `install.command` file. This will copy the files into your `~/Library/Services` directory. It will also install a Lua script into the Silverstack 9.2 scripts folder, which allows you to run an import as a Silverstack post-step action.
 
 You can also just copy it manually to match the following structure:
 ```

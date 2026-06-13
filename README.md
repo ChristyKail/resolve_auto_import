@@ -8,7 +8,7 @@ This tool allows you to select any number of camera rolls at the Finder level, a
 
 **Notes:**
 * This is MacOS based only, and will only work with the Resolve Studio version as it requires external scripting.
-* Tested on MacOS Ventura with Python 3.13.0, and Resolve Studio 19.0.3.
+* Tested on MacOS Ventura to Tahoe with Python 3.13.0, and Resolve Studio 19.0.3 to 20.2.2.
 
 ## Installation
 Download or git clone the repo, and run the `install.command` file. This will copy the files into your `~/Library/Services` directory. It will also install a Lua script into the Silverstack 9.2 scripts folder, which allows you to run an import as a Silverstack post-step action.
@@ -45,7 +45,15 @@ Now add the workflow to your finder QuickActions.
 * For each folder you had selected, Auto Import will create a named bin, import the contents, and create a timeline of all the clips
 
     <img src="src/usage_2.png" width="350"/>
-  
+
+## Silverstack integration
+With Silverstack 9.2, Auto Import can be triggered to automatically import each roll as it's offloaded. The Add_to_Resolve LUA script is insalled into the Silverstack scripts folder. 
+
+In the Silverstack offload window backup action, add a post step script and select Shared>Add_to_Resolve.lua script. Make sure your working path is set to "Destination Path" on your target drive. This is the roll the folder that will be imported.
+
+<img src="src/Silverstack_1.png" width="350"/>
+
+
 **Notes:**
 * If a folder doesn't have any media files in it, it will be skipped
 * The tool will see MXF, MOV, ARX, ARI, R3D, MP4, DPX, EXR, DNG, BRAW, and WAV files, but you can add more to the `media_file_extensions.txt` file.
